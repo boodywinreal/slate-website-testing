@@ -7,6 +7,21 @@ title: Slate Linux
 
 Slate is a lightweight Linux distribution built around musl, sinit, and a custom package manager. 
 
+### Other Links
+
+- [system.md](./system.md) - System overview
+- [boot.md](./boot.md) - Boot process and initramfs
+- [init.md](./init.md) - Init system
+- [services.md](./services.md) - Services
+- [networking.md](./networking.md) - Networking
+- [configuration.md](./configuration.md) - System configuration
+- [package-manager.md](./package-manager.md) - Package manager
+- [ports-layout.md](./ports-layout.md) - Ports layout
+- [ports.md](./ports.md) - Creating and maintaining ports
+- [building.md](./building.md) - Building software
+- [installation.md](./installation.md) - Installation
+- [troubleshooting.md](./troubleshooting.md) - Troubleshooting
+
 ## Features
 
 - musl libc
@@ -89,18 +104,3 @@ Examples include:
 Services are managed through their individual scripts.
 
 This documentation describes Slate Linux and its 0.6 development direction.
-
-## Documentation
-
-- [system.md](./system.md) - System overview
-- [boot.md](./boot.md) - Boot process and initramfs
-- [init.md](./init.md) - Init system
-- [services.md](./services.md) - Services
-- [networking.md](./networking.md) - Networking
-- [configuration.md](./configuration.md) - System configuration
-- [package-manager.md](./package-manager.md) - Package manager
-- [ports-layout.md](./ports-layout.md) - Ports layout
-- [ports.md](./ports.md) - Creating and maintaining ports
-- [building.md](./building.md) - Building software
-- [installation.md](./installation.md) - Installation
-- [troubleshooting.md](./troubleshooting.md) - Troubleshooting
