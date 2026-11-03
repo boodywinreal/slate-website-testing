@@ -75,7 +75,7 @@ Each package has its own directory containing a port.sh script.
 - net: Networking software
 - perl: Perl modules
 - system: System utilities
-- utilities: General utilities
+- utils: General utilities
 - x11: X11 software
 
 ## System
