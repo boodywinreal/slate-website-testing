@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Slate Linux
+title: "Slate Linux"
 ---
 
 # Slate Linux
