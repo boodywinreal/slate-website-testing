@@ -2,20 +2,20 @@
 
 Slate is a lightweight Linux distribution built around musl, sinit, and a custom package manager. 
 
-### Other Links
+### Table Of Contents
 
-- [system.md](./system.md) - System overview
-- [boot.md](./boot.md) - Boot process and initramfs
-- [init.md](./init.md) - Init system
-- [services.md](./services.md) - Services
-- [networking.md](./networking.md) - Networking
-- [configuration.md](./configuration.md) - System configuration
-- [package-manager.md](./package-manager.md) - Package manager
-- [ports-layout.md](./ports-layout.md) - Ports layout
-- [ports.md](./ports.md) - Creating and maintaining ports
-- [building.md](./building.md) - Building software
-- [installation.md](./installation.md) - Installation
-- [troubleshooting.md](./troubleshooting.md) - Troubleshooting
+- [System overview](./system.md)
+- [Boot process and initramfs](./boot.md)
+- [Init system](./init.md)
+- [Services](./services.md)
+- [Networking](./networking.md)
+- [System configuration](./configuration.md)
+- [Package manager](./package-manager.md)
+- [Ports layout](./ports-layout.md)
+- [Creating and maintaining ports](./ports.md)
+- [Building software](./building.md)
+- [Installation](./installation.md)
+- [Troubleshooting](./troubleshooting.md)
 
 ## Features
 
