@@ -1,8 +1,3 @@
----
-layout: default
-title: "Slate Linux"
----
-
 # Slate Linux
 
 Slate is a lightweight Linux distribution built around musl, sinit, and a custom package manager. 
