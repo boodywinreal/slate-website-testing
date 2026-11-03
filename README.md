@@ -24,16 +24,24 @@ Slate uses its own package manager to install and manage software.
 ### Commands
 
 Install a package:
-    slate install category/package
+
+    slate install <category>/<package>
 
 Remove a package:
-    slate remove category/package
+
+    slate remove <category>/<package>
 
 List installed packages:
+
     slate installed
  
 Update Slate Version:
+
     slate update
+
+List categories (or packages in a category):
+
+    slate list [<category>]
 
 ## Configuration
 The slate package manager is configured /etc/slate.conf/repos
