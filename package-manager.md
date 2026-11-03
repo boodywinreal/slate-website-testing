@@ -6,17 +6,21 @@ Slate uses its own package manager to install, remove, search, and manage softwa
 
 Install:
 
-    slate install category/package
+    slate install <category>/<package>
 
 Remove:
 
-    slate remove category/package
+    slate remove <category>/<package>
 
-Search:
+List categories:
 
-    slate search package
+    slate list
 
-List installed packages:
+Additionally to list packages inside a specific category:
+    
+    slate list <category>
+
+List installed packages
 
     slate installed
 
