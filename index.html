@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slate Linux Documentation</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #e9e1d2;
+        color: #292720;
+        font-family: "Fixed", "Misc Fixed", monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 25px;
+    }
+
+    main {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    header {
+        border-bottom: 2px solid #777064;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 30px;
+        font-weight: normal;
+        margin: 0;
+    }
+
+    h2 {
+        font-size: 19px;
+        font-weight: normal;
+        margin-top: 0;
+    }
+
+    h3 {
+        font-size: 15px;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    p {
+        margin: 8px 0 12px;
+    }
+
+    a {
+        color: #514c3e;
+    }
+
+    a:hover {
+        color: #000;
+    }
+
+    details {
+        margin: 7px 0;
+        border: 1px solid #aaa18f;
+        background: #f1ebdf;
+    }
+
+    details details {
+        margin: 7px 10px;
+        background: #f6f1e8;
+    }
+
+    summary {
+        cursor: pointer;
+        padding: 8px 10px;
+        background: #ded5c5;
+        user-select: none;
+    }
+
+    summary:hover {
+        background: #d5cbb9;
+    }
+
+    details details summary {
+        background: #e8e0d2;
+    }
+
+    details details summary:hover {
+        background: #ded5c5;
+    }
+
+    .content {
+        padding: 8px 15px 14px;
+    }
+
+    pre {
+        background: #ded8cc;
+        border: 1px solid #c5bdaf;
+        padding: 12px;
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 13px;
+    }
+
+    code {
+        background: #ded8cc;
+        padding: 2px 4px;
+    }
+
+    pre code {
+        background: none;
+        padding: 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+    }
+
+    th, td {
+        border: 1px solid #aaa18f;
+        padding: 7px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    th {
+        background: #ded5c5;
+        font-weight: normal;
+    }
+
+    ul, ol {
+        padding-left: 25px;
+    }
+
+    li {
+        margin: 4px 0;
+    }
+
+    .muted {
+        color: #716b60;
+    }
+
+    .notice {
+        border-left: 3px solid #8c806b;
+        padding: 5px 12px;
+        margin: 12px 0;
+        background: #e8e0d2;
+    }
+
+    footer {
+        border-top: 1px solid #aaa18f;
+        margin-top: 35px;
+        padding-top: 12px;
+        color: #716b60;
+    }
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+    <h1>Slate Linux</h1>
+    <p>System documentation · Release 0.6</p>
+    <p class="muted">
+        A lightweight Linux distribution built around musl,
+        simple userspace tools, and a custom package management system.
+    </p>
+</header>
+
+<details>
+<summary>01. Introduction</summary>
+<div class="content">
+
+    <details>
+    <summary>What is Slate?</summary>
+    <div class="content">
+        <p>
+            Slate is an independent Linux distribution targeting
+            x86_64 systems using the musl C library.
+        </p>
+        <p>
+            The project maintains its own boot process, init system,
+            package manager, and ports collection. The goal is to
+            provide a relatively small and understandable operating
+            system without requiring a large collection of system
+            management dependencies.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Project goals</summary>
+    <div class="content">
+        <ul>
+            <li>Use musl as the system C library.</li>
+            <li>Keep the base system small.</li>
+            <li>Maintain a simple and understandable init system.</li>
+            <li>Provide an independent package manager.</li>
+            <li>Build software from source using ports.</li>
+            <li>Keep system components relatively independent.</li>
+            <li>Avoid unnecessary dependencies.</li>
+            <li>Provide a straightforward cross-compilation environment.</li>
+        </ul>
+    </div>
+    </details>
+
+    <details>
+    <summary>System specifications</summary>
+    <div class="content">
+        <table>
+            <tr><th>Component</th><th>Implementation</th></tr>
+            <tr><td>Architecture</td><td>x86_64</td></tr>
+            <tr><td>C library</td><td>musl</td></tr>
+            <tr><td>Target triple</td><td>x86_64-linux-musl</td></tr>
+            <tr><td>Init system</td><td>Slate init</td></tr>
+            <tr><td>Package manager</td><td>Slate package manager</td></tr>
+            <tr><td>Package format</td><td>Built from source through ports</td></tr>
+            <tr><td>Initramfs utilities</td><td>Toybox and Slate utilities</td></tr>
+            <tr><td>Port definitions</td><td>Shell scripts</td></tr>
+        </table>
+    </div>
+    </details>
+
+    <details>
+    <summary>Release 0.6</summary>
+    <div class="content">
+        <p>
+            Release 0.6 expands Slate's package management,
+            boot infrastructure, and system configuration.
+        </p>
+        <ul>
+            <li>Multiple Git-based port repositories.</li>
+            <li>Repository branch and testing repository support.</li>
+            <li>Improved initramfs and root filesystem selection.</li>
+            <li>Networking initialization improvements.</li>
+            <li>Improved sysroot build and archive handling.</li>
+            <li>Expanded ports collection.</li>
+            <li>Additional system documentation.</li>
+        </ul>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>02. Boot Process and Initramfs</summary>
+<div class="content">
+
+    <details>
+    <summary>Overview</summary>
+    <div class="content">
+        <p>
+            Slate maintains its own initramfs. It is loaded by the
+            Linux kernel and provides the early userspace environment
+            required to locate and mount the actual root filesystem.
+        </p>
+        <p>
+            The initramfs is responsible for preparing the basic
+            virtual filesystems, identifying the root device, and
+            transferring control to the installed Slate system.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Initramfs components</summary>
+    <div class="content">
+        <table>
+            <tr><th>Component</th><th>Purpose</th></tr>
+            <tr>
+                <td><code>init</code></td>
+                <td>Early userspace entry point executed by the kernel.</td>
+            </tr>
+            <tr>
+                <td><code>toybox</code></td>
+                <td>Provides basic utilities required during boot.</td>
+            </tr>
+            <tr>
+                <td><code>choose-root</code></td>
+                <td>Selects or locates the root filesystem.</td>
+            </tr>
+            <tr>
+                <td><code>slate-switch-root</code></td>
+                <td>Transfers execution to the real root filesystem.</td>
+            </tr>
+        </table>
+    </div>
+    </details>
+
+    <details>
+    <summary>Boot sequence</summary>
+    <div class="content">
+        <ol>
+            <li>The bootloader loads the Linux kernel and initramfs.</li>
+            <li>The kernel initializes hardware and extracts the initramfs.</li>
+            <li>The kernel executes the initramfs <code>/init</code>.</li>
+            <li>Slate prepares <code>/dev</code>, <code>/proc</code>, and <code>/sys</code>.</li>
+            <li><code>choose-root</code> locates the requested root filesystem.</li>
+            <li><code>slate-switch-root</code> transfers control to the installed system.</li>
+        </ol>
+    </div>
+    </details>
+
+    <details>
+    <summary>Kernel command line</summary>
+    <div class="content">
+        <p>
+            Slate uses the <code>ROOT=</code> kernel command-line
+            parameter to identify the root filesystem.
+        </p>
+        <p>Example:</p>
+        <pre>ROOT=/dev/sda2</pre>
+        <p>
+            A missing or invalid <code>ROOT=</code> parameter prevents
+            the initramfs from selecting the root filesystem.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Virtual filesystems</summary>
+    <div class="content">
+        <p>
+            Early userspace prepares the virtual filesystems needed
+            by the system.
+        </p>
+        <table>
+            <tr><th>Mount point</th><th>Filesystem</th><th>Purpose</th></tr>
+            <tr><td><code>/dev</code></td><td>devtmpfs</td><td>Device nodes</td></tr>
+            <tr><td><code>/proc</code></td><td>proc</td><td>Kernel and process information</td></tr>
+            <tr><td><code>/sys</code></td><td>sysfs</td><td>Kernel device and hardware information</td></tr>
+            <tr><td><code>/run</code></td><td>tmpfs</td><td>Runtime state</td></tr>
+        </table>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>03. Slate Init System</summary>
+<div class="content">
+
+    <details>
+    <summary>Overview</summary>
+    <div class="content">
+        <p>
+            Slate uses its own init system to initialize the installed
+            system after the initramfs has transferred control.
+        </p>
+        <p>
+            The main initialization script is located at:
+        </p>
+        <pre>/bin/rc.init</pre>
+    </div>
+    </details>
+
+    <details>
+    <summary>Startup sequence</summary>
+    <div class="content">
+        <ol>
+            <li>The real root filesystem becomes active.</li>
+            <li><code>/bin/rc.init</code> begins system initialization.</li>
+            <li>Startup scripts in <code>/etc/init.d/</code> are processed.</li>
+            <li>System services are initialized.</li>
+            <li>Virtual terminal gettys are started.</li>
+            <li>The system becomes available for login.</li>
+        </ol>
+    </div>
+    </details>
+
+    <details>
+    <summary>Startup scripts</summary>
+    <div class="content">
+        <p>
+            Service startup scripts are stored in:
+        </p>
+        <pre>/etc/init.d/</pre>
+        <p>
+            Scripts are processed in lexicographical order.
+            This allows their filenames to determine their execution order.
+        </p>
+        <p>For example:</p>
+        <pre>
+/etc/init.d/
+    00-something
+    10-something
+    20-something
+        </pre>
+        <p>
+            The exact filenames depend on the installed services.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Boot logging</summary>
+    <div class="content">
+        <p>
+            Slate stores boot output in:
+        </p>
+        <pre>/var/log/boot.log</pre>
+        <p>
+            This file can be used to investigate startup failures
+            and determine which initialization scripts were executed.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Virtual terminals</summary>
+    <div class="content">
+        <p>
+            Slate provides three virtual terminal login sessions
+            using Toybox <code>getty</code>.
+        </p>
+        <p>
+            These provide multiple independent text login sessions
+            without requiring a graphical environment.
+        </p>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>04. Services</summary>
+<div class="content">
+
+    <details>
+    <summary>Service layout</summary>
+    <div class="content">
+        <p>
+            System services are managed through startup scripts
+            in <code>/etc/init.d/</code>.
+        </p>
+        <p>
+            The init system processes these scripts during system
+            initialization.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Core services</summary>
+    <div class="content">
+        <p>
+            Core services provide functionality required for normal
+            system operation. Examples include filesystem setup and
+            basic networking initialization.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Optional services</summary>
+    <div class="content">
+        <p>
+            Optional services provide additional functionality and
+            can be installed separately.
+        </p>
+        <table>
+            <tr><th>Service</th><th>Purpose</th></tr>
+            <tr><td><code>sdhcp</code></td><td>DHCP networking</td></tr>
+            <tr><td><code>filesystems</code></td><td>Filesystem initialization</td></tr>
+            <tr><td><code>seatd</code></td><td>Seat management</td></tr>
+            <tr><td><code>sshd</code></td><td>SSH server</td></tr>
+        </table>
+    </div>
+    </details>
+
+    <details>
+    <summary>Adding services</summary>
+    <div class="content">
+        <p>
+            A service is integrated into Slate through its startup
+            script in <code>/etc/init.d/</code>.
+        </p>
+        <p>
+            Scripts should be designed to initialize their service
+            and report failures appropriately.
+        </p>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>05. Networking</summary>
+<div class="content">
+
+    <details>
+    <summary>Overview</summary>
+    <div class="content">
+        <p>
+            Slate provides basic networking initialization through
+            its service system.
+        </p>
+        <p>
+            The networking setup includes loopback initialization
+            and DHCP configuration.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Loopback interface</summary>
+    <div class="content">
+        <p>
+            The loopback interface provides local network communication
+            within the machine.
+        </p>
+        <pre>lo</pre>
+        <p>
+            It is normally configured with the address
+            <code>127.0.0.1</code>.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>DHCP</summary>
+    <div class="content">
+        <p>
+            Slate includes the <code>sdhcp</code> service for
+            obtaining network configuration through DHCP.
+        </p>
+        <p>
+            DHCP can provide an IP address, gateway, and other
+            network configuration supplied by the local network.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Network troubleshooting</summary>
+    <div class="content">
+        <p>Useful commands for diagnosing network problems:</p>
+        <pre>
+ip link
+ip addr
+ip route
+ping 1.1.1.1
+        </pre>
+        <p>
+            Check that the network interface exists, is enabled,
+            has an address, and has a valid route.
+        </p>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>06. System Configuration</summary>
+<div class="content">
+
+    <details>
+    <summary>Configuration directory</summary>
+    <div class="content">
+        <p>
+            Slate stores system-wide configuration under:
+        </p>
+        <pre>/etc/</pre>
+        <p>
+            This includes service configuration and package manager
+            configuration.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Package manager configuration</summary>
+    <div class="content">
+        <p>
+            Slate package manager configuration is stored under:
+        </p>
+        <pre>/etc/slate.conf/</pre>
+    </div>
+    </details>
+
+    <details>
+    <summary>Repository configuration</summary>
+    <div class="content">
+        <p>
+            Git-based package repositories are configured in:
+        </p>
+        <pre>/etc/slate.conf/repos</pre>
+        <p>
+            Each line contains a repository URL followed by the
+            branch to use.
+        </p>
+        <p>Example:</p>
+        <pre>
+https://github.com/surprisedcat32/slate-ports.git main
+https://github.com/surprisedcat32/slate-ports.git testing
+        </pre>
+        <p>
+            Multiple repositories can be configured. This allows
+            Slate to retrieve ports from separate repositories
+            and branches.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Example repository configuration</summary>
+    <div class="content">
+        <pre>
+# Main repository
+https://github.com/surprisedcat32/slate-ports.git main
+
+# Testing repository
+https://github.com/surprisedcat32/slate-ports.git testing
+
+# Community repository
+https://github.com/example/slate-community.git main
+        </pre>
+        <p>
+            Repository entries should use the format:
+        </p>
+        <pre>GIT_URL BRANCH</pre>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>07. Slate Package Manager</summary>
+<div class="content">
+
+    <details>
+    <summary>Overview</summary>
+    <div class="content">
+        <p>
+            Slate includes its own package manager for managing
+            software built through the ports collection.
+        </p>
+        <p>
+            Packages are identified using category/package names.
+            This keeps package names organized and avoids relying
+            on a single flat namespace.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Installing packages</summary>
+    <div class="content">
+        <p>
+            Install a package by specifying its category and name:
+        </p>
+        <pre>slate install category/package</pre>
+        <p>Example:</p>
+        <pre>slate install x11/dillo</pre>
+    </div>
+    </details>
+
+    <details>
+    <summary>Removing packages</summary>
+    <div class="content">
+        <p>
+            Remove an installed package:
+        </p>
+        <pre>slate remove category/package</pre>
+    </div>
+    </details>
+
+    <details>
+    <summary>Searching for packages</summary>
+    <div class="content">
+        <p>
+            Search the available package collection:
+        </p>
+        <pre>slate search package</pre>
+        <p>
+            This can be used to locate a package before installing it.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Listing installed packages</summary>
+    <div class="content">
+        <p>
+            Display packages currently installed:
+        </p>
+        <pre>slate installed</pre>
+    </div>
+    </details>
+
+    <details>
+    <summary>Package naming</summary>
+    <div class="content">
+        <p>
+            Slate uses the following naming convention:
+        </p>
+        <pre>category/package</pre>
+        <p>
+            For example:
+        </p>
+        <pre>
+x11/dillo
+net/curl
+utils/less
+        </pre>
+        <p>
+            The category identifies the general type of software,
+            while the package name identifies the individual port.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Repositories</summary>
+    <div class="content">
+        <p>
+            Package definitions are retrieved from Git repositories.
+            Slate 0.6 supports multiple repositories, allowing
+            different collections to be used together.
+        </p>
+        <p>
+            Repository configuration is stored in
+            <code>/etc/slate.conf/repos</code>.
+        </p>
+        <p>
+            Each configured repository specifies a Git URL and
+            the branch to use.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Testing repositories</summary>
+    <div class="content">
+        <p>
+            Testing branches can be configured separately from
+            the main repository branch.
+        </p>
+        <p>
+            This allows experimental ports and package changes
+            to be maintained without immediately placing them
+            in the main collection.
+        </p>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>08. Ports Directory Layout</summary>
+<div class="content">
+
+    <details>
+    <summary>Overview</summary>
+    <div class="content">
+        <p>
+            Slate uses a ports collection to define how software
+            is downloaded, built, staged, and installed.
+        </p>
+        <p>
+            Ports are stored under:
+        </p>
+        <pre>/usr/ports/</pre>
+        <p>
+            Each port is maintained in its own directory and
+            contains a <code>port.sh</code> script.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Directory structure</summary>
+    <div class="content">
+        <pre>
+/usr/ports/
+├── dev/
+├── lib/
+├── meta/
+├── misc/
+├── net/
+├── perl/
+├── system/
+├── utils/
+└── x11/
+        </pre>
+        <p>
+            Each category contains individual package directories.
+        </p>
+        <p>For example:</p>
+        <pre>
+/usr/ports/
+└── x11/
+    ├── dillo/
+    │   └── port.sh
+    ├── picom/
+    │   └── port.sh
+    └── xeyes/
+        └── port.sh
+        </pre>
+    </div>
+    </details>
+
+    <details>
+    <summary>Port categories</summary>
+    <div class="content">
+        <table>
+            <tr><th>Category</th><th>Description</th></tr>
+            <tr><td><code>dev</code></td><td>Development tools</td></tr>
+            <tr><td><code>lib</code></td><td>Libraries</td></tr>
+            <tr><td><code>meta</code></td><td>Meta packages and collections</td></tr>
+            <tr><td><code>misc</code></td><td>Miscellaneous software</td></tr>
+            <tr><td><code>net</code></td><td>Networking software</td></tr>
+            <tr><td><code>perl</code></td><td>Perl-related software</td></tr>
+            <tr><td><code>system</code></td><td>System software</td></tr>
+            <tr><td><code>utils</code></td><td>Utilities</td></tr>
+            <tr><td><code>x11</code></td><td>X11 and graphical software</td></tr>
+        </table>
+    </div>
+    </details>
+
+    <details>
+    <summary>Port scripts</summary>
+    <div class="content">
+        <p>
+            Every port uses a <code>port.sh</code> file to describe
+            the build process.
+        </p>
+        <p>
+            The port script defines the operations needed to obtain
+            and build the software, along with the installation
+            staging process.
+        </p>
+        <p>
+            Port scripts are shell scripts, keeping package
+            definitions relatively simple and readable.
+        </p>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>09. Creating and Maintaining Ports</summary>
+<div class="content">
+
+    <details>
+    <summary>Creating a new port</summary>
+    <div class="content">
+        <p>
+            Create a directory inside the appropriate category
+            and add a <code>port.sh</code> file.
+        </p>
+        <p>Example layout:</p>
+        <pre>
+x11/
+└── example/
+    └── port.sh
+        </pre>
+    </div>
+    </details>
+
+    <details>
+    <summary>Build process</summary>
+    <div class="content">
+        <p>
+            Ports describe how to obtain and compile upstream
+            software and stage the resulting installation.
+        </p>
+        <p>
+            Build scripts should account for the target architecture,
+            the musl toolchain, and the Slate sysroot.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>DESTDIR staging</summary>
+    <div class="content">
+        <p>
+            Software should be staged into a temporary destination
+            rather than directly installed into the build host.
+        </p>
+        <p>
+            The <code>DESTDIR</code> variable is used by many build
+            systems to control the installation destination.
+        </p>
+        <pre>make DESTDIR="$DESTDIR" install</pre>
+        <p>
+            This separates the package's installed files from
+            the build environment and allows the package manager
+            to handle the staged files.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Dependencies</summary>
+    <div class="content">
+        <p>
+            Ports may require libraries or other packages to build
+            or run correctly.
+        </p>
+        <p>
+            Dependencies should be identified and maintained
+            alongside the port definition.
+        </p>
+        <p>
+            Avoid unnecessary dependencies where possible,
+            especially when maintaining a lightweight base system.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Testing ports</summary>
+    <div class="content">
+        <p>
+            New ports should be built and tested against the
+            intended Slate environment.
+        </p>
+        <ul>
+            <li>Check that the source downloads correctly.</li>
+            <li>Check that configuration succeeds.</li>
+            <li>Check that compilation completes.</li>
+            <li>Check that installation stages into DESTDIR.</li>
+            <li>Check that installed files use the expected paths.</li>
+            <li>Test the resulting software on Slate.</li>
+        </ul>
+    </div>
+    </details>
+
+    <details>
+    <summary>Maintaining ports</summary>
+    <div class="content">
+        <p>
+            Ports should be updated when upstream releases change,
+            dependencies change, or build issues are discovered.
+        </p>
+        <p>
+            Changes should be tested before being placed in the
+            main ports collection.
+        </p>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>10. Building Software</summary>
+<div class="content">
+
+    <details>
+    <summary>Cross-compilation</summary>
+    <div class="content">
+        <p>
+            Slate targets <code>x86_64-linux-musl</code>.
+            Software is cross-compiled using a musl-targeting
+            compiler and the Slate sysroot.
+        </p>
+        <p>
+            This allows software to be built from a separate
+            Linux build environment without compiling against
+            the host's C library.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Compiler</summary>
+    <div class="content">
+        <p>The target compiler is:</p>
+        <pre>x86_64-linux-musl-gcc</pre>
+        <p>
+            C++ software uses the corresponding C++ compiler:
+        </p>
+        <pre>x86_64-linux-musl-g++</pre>
+    </div>
+    </details>
+
+    <details>
+    <summary>Sysroot</summary>
+    <div class="content">
+        <p>
+            The sysroot provides the headers and libraries
+            belonging to the target system.
+        </p>
+        <p>
+            It prevents software from accidentally using host
+            headers or libraries during compilation.
+        </p>
+        <p>
+            A compiler invocation can specify the sysroot with:
+        </p>
+        <pre>
+x86_64-linux-musl-gcc \
+    --sysroot=/path/to/sysroot \
+    source.c -o program
+        </pre>
+    </div>
+    </details>
+
+    <details>
+    <summary>Build environment variables</summary>
+    <div class="content">
+        <p>
+            Build systems commonly use compiler and installation
+            variables to select the target toolchain and staging
+            destination.
+        </p>
+        <pre>
+CC=x86_64-linux-musl-gcc
+CXX=x86_64-linux-musl-g++
+DESTDIR=/path/to/staging
+        </pre>
+        <p>
+            The exact variables required depend on the upstream
+            project's build system.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Build output</summary>
+    <div class="content">
+        <p>
+            The sysroot build produces a compressed archive:
+        </p>
+        <pre>archive.tar.xz</pre>
+        <p>
+            This archive can be used to distribute or transfer
+            the resulting system filesystem.
+        </p>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>11. Installing Slate</summary>
+<div class="content">
+
+    <details>
+    <summary>Overview</summary>
+    <div class="content">
+        <p>
+            Slate is assembled as a root filesystem containing
+            its userspace, libraries, configuration, services,
+            and package management tools.
+        </p>
+        <p>
+            The installation process places this filesystem
+            on the target system and configures the boot process
+            to load the Slate kernel and initramfs.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Root filesystem</summary>
+    <div class="content">
+        <p>
+            The installed system contains the files required
+            for normal operation, including:
+        </p>
+        <ul>
+            <li>Essential commands and utilities.</li>
+            <li>musl runtime libraries.</li>
+            <li>System configuration under <code>/etc</code>.</li>
+            <li>Startup scripts under <code>/etc/init.d</code>.</li>
+            <li>Package manager configuration.</li>
+            <li>Installed software and libraries.</li>
+        </ul>
+    </div>
+    </details>
+
+    <details>
+    <summary>Boot configuration</summary>
+    <div class="content">
+        <p>
+            The bootloader must load the Slate kernel and initramfs.
+            The kernel command line must identify the root filesystem
+            using the <code>ROOT=</code> parameter.
+        </p>
+        <pre>ROOT=/dev/sda2</pre>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>12. Filesystem Layout</summary>
+<div class="content">
+
+    <details>
+    <summary>Important directories</summary>
+    <div class="content">
+        <table>
+            <tr><th>Directory</th><th>Purpose</th></tr>
+            <tr><td><code>/bin</code></td><td>Essential system commands and scripts</td></tr>
+            <tr><td><code>/etc</code></td><td>System configuration</td></tr>
+            <tr><td><code>/lib</code></td><td>Essential runtime libraries</td></tr>
+            <tr><td><code>/usr/bin</code></td><td>User commands and programs</td></tr>
+            <tr><td><code>/usr/lib</code></td><td>Libraries and supporting files</td></tr>
+            <tr><td><code>/usr/ports</code></td><td>Ports collection</td></tr>
+            <tr><td><code>/var/log</code></td><td>System logs</td></tr>
+        </table>
+    </div>
+    </details>
+
+    <details>
+    <summary>Configuration files</summary>
+    <div class="content">
+        <pre>
+/etc/
+├── init.d/
+└── slate.conf/
+    └── repos
+        </pre>
+        <p>
+            The configuration tree contains startup scripts
+            and package manager repository configuration.
+        </p>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>13. Releasing Slate</summary>
+<div class="content">
+
+    <details>
+    <summary>Preparing a release</summary>
+    <div class="content">
+        <p>
+            Before publishing a release, changes to the system,
+            package manager, initramfs, and ports collection
+            should be tested.
+        </p>
+        <ul>
+            <li>Verify that the root filesystem builds correctly.</li>
+            <li>Verify that the initramfs can boot.</li>
+            <li>Test root filesystem selection.</li>
+            <li>Test service initialization.</li>
+            <li>Test networking.</li>
+            <li>Test package installation and removal.</li>
+            <li>Test important ports.</li>
+            <li>Update the documentation.</li>
+        </ul>
+    </div>
+    </details>
+
+    <details>
+    <summary>Release archive</summary>
+    <div class="content">
+        <p>
+            The build process produces <code>archive.tar.xz</code>,
+            containing the generated system filesystem.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Version control</summary>
+    <div class="content">
+        <p>
+            Slate source code and ports are maintained using Git.
+            Changes should be committed and tested before being
+            included in a release.
+        </p>
+        <p>
+            Separate development and testing branches can be used
+            to organize work before merging changes into the main
+            branch.
+        </p>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>14. Troubleshooting</summary>
+<div class="content">
+
+    <details>
+    <summary>Root filesystem not found</summary>
+    <div class="content">
+        <p>
+            If the initramfs reports that <code>ROOT=</code> is
+            missing, check the kernel command line.
+        </p>
+        <p>Inspect it using:</p>
+        <pre>cat /proc/cmdline</pre>
+        <p>
+            Ensure the bootloader supplies the correct root device.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Boot process failures</summary>
+    <div class="content">
+        <p>
+            If Slate fails during startup, inspect the boot log:
+        </p>
+        <pre>cat /var/log/boot.log</pre>
+        <p>
+            Check which initialization script failed and whether
+            its required programs or dependencies are available.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Networking problems</summary>
+    <div class="content">
+        <p>
+            Check network interfaces, addresses, and routes:
+        </p>
+        <pre>
+ip link
+ip addr
+ip route
+        </pre>
+        <p>
+            Verify that the appropriate networking services
+            have been initialized.
+        </p>
+    </div>
+    </details>
+
+    <details>
+    <summary>Package build failures</summary>
+    <div class="content">
+        <p>
+            When a port fails to build, check:
+        </p>
+        <ul>
+            <li>Whether the source archive or Git repository is available.</li>
+            <li>Whether the required build dependencies exist.</li>
+            <li>Whether the correct cross-compiler is being used.</li>
+            <li>Whether the sysroot contains the required headers.</li>
+            <li>Whether the build system supports the target architecture.</li>
+            <li>Whether installation is correctly staged through DESTDIR.</li>
+        </ul>
+    </div>
+    </details>
+
+    <details>
+    <summary>Missing shared libraries</summary>
+    <div class="content">
+        <p>
+            Check that the required libraries exist in the
+            target filesystem and that the program was built
+            against the correct musl environment.
+        </p>
+        <p>
+            A program built against the host's glibc environment
+            may not run correctly on Slate.
+        </p>
+    </div>
+    </details>
+
+</div>
+</details>
+
+
+<details>
+<summary>15. Project Links</summary>
+<div class="content">
+    <ul>
+        <li>
+            <a href="https://github.com/surprisedcat32/slate">
+                Slate source repository
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/surprisedcat32/slate-ports">
+                Slate ports repository
+            </a>
+        </li>
+    </ul>
+</div>
+</details>
+
+
+<footer>
+    Slate Linux Documentation · Version 0.6
+    <br>
+    <span class="muted">Independent Linux distribution project.</span>
+</footer>
+
+</main>
+</body>
+</html>
