@@ -1,6 +1,16 @@
 # Services
 
-Optional service scripts are located in /etc/init.d/.
+Service scripts are located in `/etc/init.d/`.
+
+This directory contains both core system services and optional services.
+
+Examples include:
+- sdhcp
+- filesystems
+- seatd
+- sshd
+
+Services are managed through their individual scripts.
 
 ## Listing Services
 

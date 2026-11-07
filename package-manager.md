@@ -42,7 +42,9 @@ The meta category contains collections of related packages.
 
 Slate 0.6 introduces multiple repository support.
 
-Repository configuration is stored in /etc/slate.conf/repos.
+Repository configuration is stored in `/etc/slate.conf/repos`. <br>
+
+For more info about repositories, see [Creating and maintaining ports](./ports.md)
 
 ## Package Management Notes
 
