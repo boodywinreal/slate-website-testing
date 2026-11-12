@@ -1,3 +1,4 @@
+# Slate Linux
 Slate is a lightweight Linux distribution built around the musl C library, uses sinit, and comes with its own custom package manager.
 
 ## Features
