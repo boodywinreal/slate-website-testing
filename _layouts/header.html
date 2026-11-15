@@ -1,3 +1,6 @@
-{% if page.url != '/' %}
-    <a href="{{ '/' | relative_url }}">Back to the homepage</a>
-{% endif %}
+<header>
+    {% if page.url != '/' %}
+        <h4>Slate Linux</h4>
+        <a href="{{ '/' | relative_url }}" style="float: right;">Back to the homepage</a>
+    {% endif %}
+</header>
